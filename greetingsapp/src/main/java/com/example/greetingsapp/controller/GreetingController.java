@@ -13,8 +13,13 @@ public class GreetingController {
         this.greetingService = greetingService;
     }
 
+    // Fetch Greeting by ID
+    @GetMapping("/{id}")
+    public Greeting getGreetingById(@PathVariable Long id) {
+        return greetingService.getGreetingById(id);
+    }
     @PostMapping("/save")
-    public Greeting saveGreeting(@RequestParam String message) {
-        return greetingService.saveGreeting(message);
+    public Greeting createGreeting(@RequestBody Greeting greeting) {
+        return greetingService.saveGreeting(greeting);
     }
 }
