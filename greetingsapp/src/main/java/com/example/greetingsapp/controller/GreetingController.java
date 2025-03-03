@@ -2,6 +2,7 @@ package com.example.greetingsapp.controller;
 import com.example.greetingsapp.model.Greeting;
 import com.example.greetingsapp.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/greeting")
@@ -21,5 +22,9 @@ public class GreetingController {
     @PostMapping("/save")
     public Greeting createGreeting(@RequestBody Greeting greeting) {
         return greetingService.saveGreeting(greeting);
+    }
+    @GetMapping
+    public List<Greeting> getAllGreetings() {
+        return greetingService.getAllGreetings();
     }
 }
