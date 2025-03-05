@@ -18,12 +18,14 @@ public class AuthService {
     private final AuthUserRepository repository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
+    private final EmailService emailService;
 
     @Autowired
-    public AuthService(AuthUserRepository repository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
+    public AuthService(AuthUserRepository repository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil,EmailService emailService) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
+        this.emailService = emailService;
     }
 
     public String registerUser(AuthUserDTO dto) {
@@ -38,8 +40,10 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
 
         repository.save(user);
+        //Email sent when successfull registration
+        emailService.sendWelcomeEmail(user.getEmail(), user.getFirstName());
 
-        return "User registered successfully!";
+        return "User registered successfully! Welcome email sent.";
     }
 
     public String loginUser(LoginDTO dto) {
