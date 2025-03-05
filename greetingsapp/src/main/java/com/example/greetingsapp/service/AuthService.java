@@ -15,10 +15,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthService {
 
-    private final AuthUserRepository repository;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;
-    private final EmailService emailService;
+    AuthUserRepository repository;
+    PasswordEncoder passwordEncoder;
+    JwtUtil jwtUtil;
+    EmailService emailService;
 
     @Autowired
     public AuthService(AuthUserRepository repository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil,EmailService emailService) {

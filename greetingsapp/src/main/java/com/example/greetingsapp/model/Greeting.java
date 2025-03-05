@@ -1,24 +1,26 @@
 package com.example.greetingsapp.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 @Entity
+@Schema(name = "Greeting", description = "Represents a simple greeting message")
 public class Greeting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Unique identifier for the greeting", example = "1", accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
+
+    @Schema(description = "The message content of the greeting", example = "Hello, World!")
     private String message;
 
-    // Default constructor
     public Greeting() {}
 
-    // Constructor
     public Greeting(String message) {
         this.message = message;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -26,7 +28,6 @@ public class Greeting {
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getMessage() {
         return message;
     }
