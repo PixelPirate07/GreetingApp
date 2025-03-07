@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class AuthUser {
 
     @Email
     @NotBlank
+    @Pattern(regexp = "^[a-zA-Z0-9-_+]+@[a-zA-Z-_+]+\\.[a-z]{2,}$")
     @Column(unique = true)
     private String email;
 
